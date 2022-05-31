@@ -29,5 +29,7 @@ db.sequelize.sync().then(()=>{
     console.log('Error in syncing database');
 })
 
-db.User = User(sequelize, DataTypes) ;
+const user = User(sequelize, DataTypes) ;
+db.user = user;
+console.log('here',user);
 module.exports = db;
