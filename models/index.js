@@ -21,10 +21,13 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
-db.user = User(sequelize, DataTypes) 
+
 
 db.sequelize.sync().then(()=>{
     console.log('Database synced');
 }).catch((err)=>{
     console.log('Error in syncing database');
 })
+
+db.User = User(sequelize, DataTypes) ;
+module.exports = db;
