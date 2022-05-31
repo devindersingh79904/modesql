@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-
+const {Sequelize,DataTypes} = require('sequelize');
+const User = require('./User');
 const sequelize = new Sequelize('test', 'root', 'Dsp@12345', {
     host: 'localhost',
     dialect: 'mysql',
@@ -14,5 +14,17 @@ try {
     console.error('Unable to connect to the database:', error);
   }
 }
-
 app();
+
+const db = {}
+
+db.Sequelize = Sequelize
+db.sequelize = sequelize
+
+db.user = User(sequelize, DataTypes) 
+
+db.sequelize.sync().then(()=>{
+    console.log('Database synced');
+}).catch((err)=>{
+    console.log('Error in syncing database');
+})
